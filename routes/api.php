@@ -20,20 +20,10 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('create', 'API\UserController@store');
     Route::post('user/{id}', 'API\UserController@update');
     Route::post('delete/{id}', 'API\UserController@destroy');
+    Route::get('search', 'API\UserController@search');
    
+    Route::get('download/users', 'ExportUserController@showUsersDownload')->name('showUsersDownload');
+    Route::get('download/users-file', 'ExportUserController@usersDownload')->name('usersDownload');
+
+    Route::post('logout', 'API\UserController@logout');
     });
-//Route::post('details', 'API\UserController@details');
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-//Route::group(['middleware' => 'auth:api'], function(){
-   
-    //Route::post('details', 'API\UserController@details');
-  //  Route::post('create','API\UserController@store');
-    
-    //Route::get('/edit_user/{id}', 'API\UserController@edit');
-    //Route::patch('/updated_user/{id}', 'API\UserController@update');
-    //Route::get('/user/myprofile', 'API\UserController@myprofile');
-    //Route::get('/deleted_user/{id}', 'API\UserController@destroy');
-    //Route::get('/search', 'API\UserController@search');
-    //});

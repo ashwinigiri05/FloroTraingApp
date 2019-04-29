@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Services\ExportUserService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
-use Validator;
-use App\User;
 use App\Services\UserService;
+use Response;
 
 class UserController extends Controller
 {   private $userService;
     public $successStatus = 200;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService,ExportUserService $exportUserService)
     {
-     
+        $this->exportUserService = $exportUserService;
         $this->userService = $userService;
     }
     public function login(){ 
@@ -90,9 +90,22 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-      $serach = $request->get('search');
-      $users = $this->userService->searchUser($serach);
-      return response()->json($users);
+      $search = $request->get('data');
+      $users = $this->userService->searchUser($search);
+      return Response::json([
+        'data' => $users
+    ]); 
     }
-    
+
+    public function logout(){   
+        if (Auth::check()) {
+            Auth::user()->token()->revoke();
+            return response()->json(['success' =>'logout_success'],200); 
+        }else{
+            return response()->json(['error' =>'api.something_went_wrong'], 500);
+        }
+    }
+
+       
+            
 }

@@ -95,5 +95,6 @@ class UserController extends Controller
       $users = $this->userService->searchUser($serach);
       return view('/home',[ 'users' =>$users]);
       
+     
     }
 }

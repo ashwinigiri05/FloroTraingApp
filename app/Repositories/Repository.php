@@ -50,7 +50,7 @@ class Repository
     }
 
     public function user($userName)
-    {    
+    {  
             $users = \DB::table('users')->where('username','like','%'.$userName.'%')
             ->orWhere('firstname','like','%'.$userName.'%')
             ->orWhere('lastname','like','%'.$userName.'%')
