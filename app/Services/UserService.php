@@ -41,7 +41,7 @@ class UserService
             'city' => $userData['city'],
             
           ];
-            $this->userRepository->create($userDetails);
+         return   $this->userRepository->create($userDetails);
        
     }
 

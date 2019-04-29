@@ -18,6 +18,9 @@ class UserRepository extends Repository
     {
         return User::class;
     }
-
+    public function create(array $attributes)
+    {
+        return $this->model->create($attributes);
+    }
    
 }

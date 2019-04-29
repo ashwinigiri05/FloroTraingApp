@@ -15,6 +15,7 @@ class Repository
 
     public function create(array $attributes)
     {
+       // dd($attributes);
         return $this->model->create($attributes);
     }
     
