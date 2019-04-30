@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Services\UserService;
 use Response;
+use User;
 
 class UserController extends Controller
 {   private $userService;
@@ -96,6 +97,20 @@ class UserController extends Controller
         'data' => $users
     ]); 
     }
+    public function sortUser(Request $request,User $user)
+    {
+
+        $data = $request->get('data');
+        $sortColumn = $request->get('sortColumn');
+        $sort = $request->get('sort');
+
+
+        $sort_users = User::orderBy($sortColumn,$sort) 
+        ->get();
+        return $sort_users;
+        return response()->json(['data'=> $user]);
+
+     }
 
     public function logout(){   
         if (Auth::check()) {

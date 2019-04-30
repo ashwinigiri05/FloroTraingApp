@@ -21,9 +21,12 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('user/{id}', 'API\UserController@update');
     Route::post('delete/{id}', 'API\UserController@destroy');
     Route::get('search', 'API\UserController@search');
+    Route::get('sort', 'API\UserController@sortUser');
    
-    Route::get('download/users', 'ExportUserController@showUsersDownload')->name('showUsersDownload');
-    Route::get('download/users-file', 'ExportUserController@usersDownload')->name('usersDownload');
+   
+   
+    Route::get('download/users', 'API\ExportUserController@showUsersDownload')->name('showUsersDownload');
+    Route::get('download/users-file', 'API\ExportUserController@usersDownload')->name('usersDownload');
 
     Route::post('logout', 'API\UserController@logout');
     });
